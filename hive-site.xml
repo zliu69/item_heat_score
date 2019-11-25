@@ -1,0 +1,172 @@
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+
+<property>
+	<name>hive.metastore.uris</name>
+	<value>thrift://10.23.240.71:9083,thrift://10.23.240.72:9083,thrift://10.23.240.58:9083,thrift://10.23.240.59:9083,thrift://10.23.240.71:9084,thrift://10.23.240.72:9084,thrift://10.23.240.58:9084,thrift://10.23.240.59:9084</value>
+</property>
+
+<property>
+	<name>datanucleus.schema.autoCreateAll</name>
+	<value>false</value>
+</property>
+
+<property>
+	<name>hive.metastore.execute.setugi</name>
+	<value>true</value>
+</property>
+
+<property>
+	<name>hive.security.authorization.enabled</name>
+	<value>false</value>
+</property>
+<property>
+	<name>hive.security.authorization.createtable.owner.grants</name>
+	<value>ALL</value>
+</property>
+
+<property>
+	<name>hive.warehouse.subdir.inherit.perms</name>
+	<value>false</value>
+</property>
+
+<!--VALUE:10000-->
+<property>
+	<name>hive.server2.thrift.port</name>
+	<value>10001</value>
+</property>
+
+<property>
+	<name>hive.server2.session.check.interval</name>
+	<value>30m</value>
+</property>
+<!--VALUE:7d-->
+<property>
+	<name>hive.server2.idle.session.timeout</name>
+	<value>3h</value>
+</property>
+<!--VALUE:5d-->
+<property>
+	<name>hive.server2.idle.operation.timeout</name>
+	<value>3h</value>
+</property>
+<!--VALUE:600s-->
+<property>
+	<name>hive.metastore.client.socket.timeout</name>
+	<value>600s</value>
+</property>
+
+<property>
+	<name>hive.semantic.analyzer.hook</name>
+	<value>com.athm.data.udf.builtins.UDFHook,com.autohome.data.TableInfoHook</value>
+</property>
+<!--VALUE:true-->
+<property>
+	<name>hive.auto.convert.join</name>
+	<value>true</value>
+</property>
+<!--VALUE:true-->
+<property>
+	<name>hive.map.aggr</name>
+	<value>false</value>
+</property>
+
+<!-- kerberos --> 
+<property>
+	<name>hive.server2.authentication</name>
+	<value>KERBEROS</value>
+</property>
+
+<property>
+	<name>hive.server2.authentication.kerberos.principal</name>
+	<value>hive/hive-metastore-240-58.hadoop.lq@HADOOP.LQ2</value>
+</property>
+
+<property>
+	<name>hive.server2.authentication.kerberos.keytab</name>
+	<value>/data/sysdir/hadoop/etc/hadoop/hive.keytab</value>
+</property>
+
+<property>
+	<name>hive.server2.enable.impersonation</name>
+	<value>true</value>
+</property>
+
+<property>
+	<name>hive.metastore.sasl.enabled</name>
+	<value>true</value>
+</property>
+
+<property>
+	<name>hive.metastore.kerberos.keytab.file</name>
+	<value>/data/sysdir/hadoop/etc/hadoop/hive.keytab</value>
+</property>
+
+<property>
+	<name>hive.metastore.kerberos.principal</name>
+	<value>hive/hive-metastore-240-58.hadoop.lq@HADOOP.LQ2</value>
+</property>
+<!-- kerberos -->
+
+<property>
+	<name>hive.security.authorization.manager</name>
+	<value>org.apache.hadoop.hive.ql.security.authorization.DefaultHiveAuthorizationProvider</value>
+</property>
+
+<property>
+	<name>hive.metastore.warehouse.dir</name>
+	<value>hdfs://ns1/user/hive/warehouse</value>
+</property>
+
+<property>
+	<name>hive.jobname.length</name>
+	<value>10</value>
+</property>
+
+<property>
+	<name>hive.exec.scratchdir</name>
+	<value>hdfs://ns1/tmp/hive</value>
+</property>
+
+  <!--for merge small file start-->
+<property>
+	<name>hive.input.format</name>
+	<value>org.apache.hadoop.hive.ql.io.CombineHiveInputFormat</value>
+</property>
+
+<property>
+	<name>mapred.max.split.size</name>
+	<value>512000000</value>
+</property>
+
+<property>
+	<name>mapred.min.split.size.per.node</name>
+	<value>256000000</value>
+</property>
+
+<property>
+	<name>mapred.min.split.size.per.rack</name>
+	<value>256000000</value>
+</property>
+
+<property>
+	<name>hive.merge.mapfiles</name>
+	<value>true</value>
+</property>
+
+<property>
+	<name>hive.merge.mapredfiles</name>
+	<value>true</value>
+</property>
+
+<property>
+	<name>hive.merge.size.per.task</name>
+	<value>256000000</value>
+</property>
+
+<property>
+	<name>hive.merge.smallfiles.avgsize</name>
+	<value>256000000</value>
+</property>
+<!--for merge small file end-->
+</configuration>
