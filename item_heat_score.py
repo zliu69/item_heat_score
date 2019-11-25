@@ -179,9 +179,9 @@ if __name__ == '__main__':
     #
     # # %%
     #
-    # spark.sql("drop table if exists cmp_tmp.cmp_tmp_heat_score_reply")
-    # df_gdm_item.registerTempTable('test_hive')
-    # spark.sql("create table cmp_tmp.cmp_tmp_heat_score_reply select * from test_hive")
+    spark.sql("drop table if exists cmp_tmp.cmp_tmp_heat_score_reply")
+    df_gdm_item.registerTempTable('test_hive')
+    spark.sql("create table cmp_tmp.cmp_tmp_heat_score_reply select * from test_hive")
     # #
     # # # %%
     # #
@@ -189,7 +189,7 @@ if __name__ == '__main__':
     # #
     # # # %%
     # #
-    pool = redis.ConnectionPool(host="codis.rcmsys2.lq.autohome.com.cn", port="19099")
+    pool = redis.ConnectionPool(host="10.25.248.35", port="6379", db=3)
     conn = redis.Redis(connection_pool=pool, decode_responses=True)
     dict_heat_score = df_gdm_item.rdd.collectAsMap()
     # #
@@ -198,14 +198,14 @@ if __name__ == '__main__':
 
     # #
     # # # %%
-    # #19
+    # #
 
     # #
     # # # %%
     # #
     with conn.pipeline(transaction=False) as p:
         for key in dict_heat_score:
-            p.set(key, dict_heat_score[key], 90000)  # 6000代表6000秒，可以自己设置
+            p.set(key, dict_heat_score[key], 12000)  # 6000代表6000秒，可以自己设置
         p.execute()
 
     # # %%
