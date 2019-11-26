@@ -189,24 +189,33 @@ if __name__ == '__main__':
     # #
     # # # %%
     # #
+
     pool = redis.ConnectionPool(host="codis.rcmsys2.lq.autohome.com.cn", port="19099")
     conn = redis.Redis(connection_pool=pool, decode_responses=True)
     dict_heat_score = df_gdm_item.rdd.collectAsMap()
-    # #
-    # # # %%
-    # #
-
-    # #
-    # # # %%
-    # #
-
-    # #
-    # # # %%
-    # #
+    cnt = 0
+    total_num = len(dict_heat_score)
+    batch_size = total_num // 1000
+    #
+    # # %%
+    #
     with conn.pipeline(transaction=False) as p:
         for key in dict_heat_score:
             p.set(key, dict_heat_score[key], 90000)  # 6000代表6000秒，可以自己设置
-        p.execute()
+            cnt = cnt + 1
+            if cnt == total_num or cnt % batch_size == 0:
+                p.execute()
+    #
+    # # %%
+    #
+
+    #
+    # # %%
+    #
+    # with conn.pipeline(transaction=False) as p:
+    #     for key in dict_heat_score:
+    #         p.set(key, dict_heat_score[key], 90000)  # 6000代表6000秒，可以自己设置
+    #     p.execute()
 
     # # %%
     #

@@ -63,12 +63,12 @@
 <!--VALUE:true-->
 <property>
 	<name>hive.auto.convert.join</name>
-	<value>true</value>
+	<value>false</value>
 </property>
 <!--VALUE:true-->
 <property>
 	<name>hive.map.aggr</name>
-	<value>false</value>
+	<value>true</value>
 </property>
 
 <!-- kerberos --> 

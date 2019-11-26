@@ -2,7 +2,7 @@
 
 
 
-spark-submit item_heat_score.py --master yarn --name item_heat_score_feature \
+spark-submit item_heat_score.py --master yarn --name item_heat_score_lzm \
 --deploy-mode client \
 --conf spark.yarn.maxAppAttempts=1 \
 --conf spark.app.name=liuzimo\
